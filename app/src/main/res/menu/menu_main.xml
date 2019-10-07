@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.crudusuario.activities.MainActivity">
+    <item
+        android:id="@+id/login"
+        android:orderInCategory="100"
+        android:title="Login"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/cadastro_usuario"
+        android:orderInCategory="100"
+        android:title="Cadastro de Usuario"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/lista_usuarios"
+        android:orderInCategory="100"
+        android:title="Lista de Usuarios"
+        app:showAsAction="never" />
+
+
+</menu>
