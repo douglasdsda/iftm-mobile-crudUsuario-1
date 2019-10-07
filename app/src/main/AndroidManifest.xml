@@ -14,25 +14,38 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".activities.recyclerview_layout_item_todos_usuarios"></activity>
+        <activity android:name=".activities.activity_update"
+            android:label="Editar Usuario"
+            android:parentActivityName=".activities.MainActivity"
+            >     <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activities.MainActivity" /></activity>
 
-        <activity android:name=".activities.activity_lista_usuarios"
+        <activity android:name=".activities.activity_delete"
+            android:label="Excluir Usuario"
+            android:parentActivityName=".activities.MainActivity"
+            >     <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".activities.MainActivity" /> </activity>
+
+
+        <activity android:name=".activities.recyclerview_layout_item_todos_usuarios" />
+        <activity
+            android:name=".activities.activity_lista_usuarios"
             android:label="Lista de usuarios"
             android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-
-        <activity android:name=".activities.activity_login"
+        <activity
+            android:name=".activities.activity_login"
             android:label="Login"
-            android:parentActivityName=".activities.MainActivity"
-            >
+            android:parentActivityName=".activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-
         <activity
             android:name=".activities.activity_cadastro_de_usuario"
             android:label="Cadastro de Usuario"
@@ -41,8 +54,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
-
-
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"

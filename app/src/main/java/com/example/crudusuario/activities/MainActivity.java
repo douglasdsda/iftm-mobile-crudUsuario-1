@@ -53,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.lista_usuarios:
                 startActivity(new Intent(this,activity_lista_usuarios.class));
                 break;
+            case R.id.excluir_usuario:
+                startActivity(new Intent(this,activity_delete.class));
+                break;
+            case R.id.editar_usuario:
+                startActivity(new Intent(this,activity_update.class));
+                break;
+
 
         }
 
