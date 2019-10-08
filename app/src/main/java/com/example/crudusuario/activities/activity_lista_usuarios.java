@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.crudusuario.R;
 import com.example.crudusuario.dto.DtoUsers;
@@ -30,23 +31,26 @@ public class activity_lista_usuarios extends AppCompatActivity {
         buscaDados();
     }
 
-    private  void preencheRecyclerview(List<DtoUsers> lista){
+    private void preencheRecyclerview(List<DtoUsers> lista) {
         RecyclerView mRecyclerView = findViewById(R.id.rv_todos_usuarios);
-        UsuarioAdapter mAdapter = new UsuarioAdapter( this, lista);
+        UsuarioAdapter mAdapter = new UsuarioAdapter(this, lista);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
-    private void buscaDados(){
+    private void buscaDados() {
         SharedPreferences sp = getSharedPreferences("dados", 0);
         String token = sp.getString("token", null);
-
+        Log.d(TAG, "buscaDados: " + token);
         RetrofitService.getServico(this).todosUsuarios("Bearer " + token).enqueue(new Callback<List<DtoUsers>>() {
             @Override
             public void onResponse(Call<List<DtoUsers>> call, Response<List<DtoUsers>> response) {
-                List<DtoUsers> lista = response.body();
-                     preencheRecyclerview(lista);
+                if (response.code() == 200) {
+                    List<DtoUsers> lista = response.body();
+                    preencheRecyclerview(lista);
+                } else
+                    Toast.makeText(activity_lista_usuarios.this, "Problema " + response.code(), Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -15,6 +15,7 @@ public class RetrofitService {
 
     private static Context context;
   //  private String baseUrl = "http://192.168.100.5:8080/";
+    //private String baseUrl = "http://10.10.20.85:8080/";
     private String baseUrl = "https://projeto-integrador-4.herokuapp.com/";
     private InterfaceDeServicos api;
     private static RetrofitService instancia;

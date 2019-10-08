@@ -46,9 +46,8 @@ public class activity_login extends AppCompatActivity {
                 SharedPreferences sp = getSharedPreferences("dados", 0);
                 SharedPreferences.Editor editor = sp.edit();
                 editor.putString("token",response.body().getToken());
-              //  editor.apply();
+                editor.apply();
                 startActivity(new Intent( activity_login.this , MainActivity.class));
-               // editor.apply();
             }
 
             @Override
