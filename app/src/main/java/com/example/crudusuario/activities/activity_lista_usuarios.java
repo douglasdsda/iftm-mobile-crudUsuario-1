@@ -1,16 +1,19 @@
 package com.example.crudusuario.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.crudusuario.R;
 import com.example.crudusuario.dto.DtoUsers;
+import com.example.crudusuario.helpers.SwipeToDeleteCallback;
 import com.example.crudusuario.helpers.UsuarioAdapter;
 import com.example.crudusuario.services.RetrofitService;
 
@@ -37,11 +40,16 @@ public class activity_lista_usuarios extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //swipe
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(mAdapter));
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+
     }
 
     private void buscaDados() {
-        SharedPreferences sp = getSharedPreferences("dados", 0);
-        String token = sp.getString("token", null);
+      //  SharedPreferences sp = getSharedPreferences("dados", 0);
+        //String token = sp.getString("token", null);
+        String token =  getToken();
         Log.d(TAG, "buscaDados: " + token);
         RetrofitService.getServico(this).todosUsuarios("Bearer " + token).enqueue(new Callback<List<DtoUsers>>() {
             @Override
@@ -61,5 +69,26 @@ public class activity_lista_usuarios extends AppCompatActivity {
 
     }
 
+    public String getToken(){
+        SharedPreferences sp = getSharedPreferences("dados", 0);
+        return sp.getString("token", null);
+
+    }
+
+    public void excluirItem(int id) {
+        String token = getToken();
+        RetrofitService.getServico(this).excluirUsuario(id, "Bearer " + token).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(activity_lista_usuarios.this, "Código de retorno: " + response.code(),Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d(TAG, "onFailure: "+ t.getMessage());
+            }
+        });
+
+    }
 
 }

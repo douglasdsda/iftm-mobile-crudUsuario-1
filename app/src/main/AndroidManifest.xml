@@ -13,22 +13,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".activities.activity_update"
+        <activity android:name=".activities.AlteracaoUsuarioActivity"></activity>
+        <activity
+            android:name=".activities.activity_update"
             android:label="Editar Usuario"
-            android:parentActivityName=".activities.MainActivity"
-            >     <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activities.MainActivity" /></activity>
-
-        <activity android:name=".activities.activity_delete"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activities.activity_delete"
             android:label="Excluir Usuario"
-            android:parentActivityName=".activities.MainActivity"
-            >     <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".activities.MainActivity" /> </activity>
-
-
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
         <activity android:name=".activities.recyclerview_layout_item_todos_usuarios" />
         <activity
             android:name=".activities.activity_lista_usuarios"
